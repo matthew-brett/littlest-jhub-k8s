@@ -16,6 +16,6 @@ proxy:
   https:
     enabled: true
     hosts:
-      - jhub.nipraxis.org
+      - hub.odsti.org
     letsencrypt:
       contactEmail: matthew.brett@gmail.com

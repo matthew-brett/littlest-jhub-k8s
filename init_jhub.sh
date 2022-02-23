@@ -7,3 +7,6 @@ helm upgrade --cleanup-on-fail \
   --create-namespace \
   --version=$JHUB_VERSION \
   --values config.yaml
+
+kubectl --namespace=$NAMESPACE get pod
+kubectl --namespace=$NAMESPACE get svc proxy-public

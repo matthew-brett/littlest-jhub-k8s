@@ -10,7 +10,7 @@ MY_ACCOUNT=matthew.brett@gmail.com
 # https://jupyterhub.github.io/helm-chart/
 # NNB - must match corresponding jupyterhub etc specs in docker image.
 # See config.yaml
-JHUB_VERSION="1.2.0"
+JHUB_VERSION="1.1.3-n323.h6f4609e2"
 # Region on which the cluster will run; see notes
 REGION=us-west1
 # Zone within region; see notes
