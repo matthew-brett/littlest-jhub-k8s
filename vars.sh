@@ -8,9 +8,7 @@ MY_ACCOUNT=matthew.brett@gmail.com
 # https://discourse.jupyter.org/t/trouble-getting-https-letsencrypt-working-with-0-9-0-beta-4/3583/5?u=matthew.brett
 # and
 # https://jupyterhub.github.io/helm-chart/
-# NNB - must match corresponding jupyterhub etc specs in docker image.
-# See config.yaml
-JHUB_VERSION="1.1.3-n323.h6f4609e2"
+JHUB_VERSION="1.1.3-n324.hb93a9b5f"
 # Region on which the cluster will run; see notes
 REGION=us-west1
 # Zone within region; see notes
