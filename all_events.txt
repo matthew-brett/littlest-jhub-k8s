@@ -1,0 +1,117 @@
+LAST SEEN   TYPE      REASON                   OBJECT                                 MESSAGE
+7m43s       Normal    Scheduled                pod/autohttps-5588fb5c97-v9px5         Successfully assigned jhub/autohttps-5588fb5c97-v9px5 to gke-jhub-cluster-default-pool-ae24674e-h4n8
+7m42s       Normal    Pulling                  pod/autohttps-5588fb5c97-v9px5         Pulling image "jupyterhub/k8s-secret-sync:1.1.3-n291.h773264a9"
+7m26s       Normal    Pulled                   pod/autohttps-5588fb5c97-v9px5         Successfully pulled image "jupyterhub/k8s-secret-sync:1.1.3-n291.h773264a9" in 15.765004442s
+7m25s       Normal    Created                  pod/autohttps-5588fb5c97-v9px5         Created container load-acme
+7m25s       Normal    Started                  pod/autohttps-5588fb5c97-v9px5         Started container load-acme
+7m23s       Normal    Pulling                  pod/autohttps-5588fb5c97-v9px5         Pulling image "traefik:v2.6.1"
+7m17s       Normal    Pulled                   pod/autohttps-5588fb5c97-v9px5         Successfully pulled image "traefik:v2.6.1" in 6.13352423s
+7m16s       Normal    Created                  pod/autohttps-5588fb5c97-v9px5         Created container traefik
+7m16s       Normal    Started                  pod/autohttps-5588fb5c97-v9px5         Started container traefik
+7m16s       Normal    Pulled                   pod/autohttps-5588fb5c97-v9px5         Container image "jupyterhub/k8s-secret-sync:1.1.3-n291.h773264a9" already present on machine
+7m16s       Normal    Created                  pod/autohttps-5588fb5c97-v9px5         Created container secret-sync
+7m16s       Normal    Started                  pod/autohttps-5588fb5c97-v9px5         Started container secret-sync
+7m43s       Normal    SuccessfulCreate         replicaset/autohttps-5588fb5c97        Created pod: autohttps-5588fb5c97-v9px5
+7m44s       Normal    ScalingReplicaSet        deployment/autohttps                   Scaled up replica set autohttps-5588fb5c97 to 1
+7m44s       Normal    Scheduled                pod/continuous-image-puller-f29h6      Successfully assigned jhub/continuous-image-puller-f29h6 to gke-jhub-cluster-default-pool-ae24674e-h4n8
+7m43s       Normal    Pulled                   pod/continuous-image-puller-f29h6      Container image "jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47" already present on machine
+7m43s       Normal    Created                  pod/continuous-image-puller-f29h6      Created container image-pull-metadata-block
+7m43s       Normal    Started                  pod/continuous-image-puller-f29h6      Started container image-pull-metadata-block
+7m42s       Normal    Pulled                   pod/continuous-image-puller-f29h6      Container image "jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c" already present on machine
+7m42s       Normal    Created                  pod/continuous-image-puller-f29h6      Created container image-pull-singleuser
+7m42s       Normal    Started                  pod/continuous-image-puller-f29h6      Started container image-pull-singleuser
+7m41s       Normal    Pulled                   pod/continuous-image-puller-f29h6      Container image "k8s.gcr.io/pause:3.6" already present on machine
+7m41s       Normal    Created                  pod/continuous-image-puller-f29h6      Created container pause
+7m41s       Normal    Started                  pod/continuous-image-puller-f29h6      Started container pause
+7m44s       Normal    Scheduled                pod/continuous-image-puller-fcflc      Successfully assigned jhub/continuous-image-puller-fcflc to gke-jhub-cluster-default-pool-ae24674e-3b6w
+7m43s       Normal    Pulled                   pod/continuous-image-puller-fcflc      Container image "jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47" already present on machine
+7m43s       Normal    Created                  pod/continuous-image-puller-fcflc      Created container image-pull-metadata-block
+7m43s       Normal    Started                  pod/continuous-image-puller-fcflc      Started container image-pull-metadata-block
+7m42s       Normal    Pulled                   pod/continuous-image-puller-fcflc      Container image "jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c" already present on machine
+7m42s       Normal    Created                  pod/continuous-image-puller-fcflc      Created container image-pull-singleuser
+7m42s       Normal    Started                  pod/continuous-image-puller-fcflc      Started container image-pull-singleuser
+7m41s       Normal    Pulled                   pod/continuous-image-puller-fcflc      Container image "k8s.gcr.io/pause:3.6" already present on machine
+7m41s       Normal    Created                  pod/continuous-image-puller-fcflc      Created container pause
+7m41s       Normal    Started                  pod/continuous-image-puller-fcflc      Started container pause
+7m44s       Normal    SuccessfulCreate         daemonset/continuous-image-puller      Created pod: continuous-image-puller-fcflc
+7m44s       Normal    SuccessfulCreate         daemonset/continuous-image-puller      Created pod: continuous-image-puller-f29h6
+8m21s       Normal    Scheduled                pod/hook-image-awaiter--1-7z4p4        Successfully assigned jhub/hook-image-awaiter--1-7z4p4 to gke-jhub-cluster-default-pool-ae24674e-h4n8
+8m20s       Normal    Pulling                  pod/hook-image-awaiter--1-7z4p4        Pulling image "jupyterhub/k8s-image-awaiter:1.1.3-n300.h6ef0fef9"
+8m17s       Normal    Pulled                   pod/hook-image-awaiter--1-7z4p4        Successfully pulled image "jupyterhub/k8s-image-awaiter:1.1.3-n300.h6ef0fef9" in 2.742590982s
+8m17s       Normal    Created                  pod/hook-image-awaiter--1-7z4p4        Created container hook-image-awaiter
+8m17s       Normal    Started                  pod/hook-image-awaiter--1-7z4p4        Started container hook-image-awaiter
+7m47s       Warning   FailedMount              pod/hook-image-awaiter--1-7z4p4        MountVolume.SetUp failed for volume "kube-api-access-w8czh" : object "jhub"/"kube-root-ca.crt" not registered
+8m21s       Normal    SuccessfulCreate         job/hook-image-awaiter                 Created pod: hook-image-awaiter--1-7z4p4
+7m47s       Normal    Completed                job/hook-image-awaiter                 Job completed
+8m24s       Normal    Scheduled                pod/hook-image-puller-bh7cf            Successfully assigned jhub/hook-image-puller-bh7cf to gke-jhub-cluster-default-pool-ae24674e-h4n8
+8m23s       Normal    Pulling                  pod/hook-image-puller-bh7cf            Pulling image "jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47"
+8m20s       Normal    Pulled                   pod/hook-image-puller-bh7cf            Successfully pulled image "jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47" in 2.803643573s
+8m20s       Normal    Created                  pod/hook-image-puller-bh7cf            Created container image-pull-metadata-block
+8m20s       Normal    Started                  pod/hook-image-puller-bh7cf            Started container image-pull-metadata-block
+8m20s       Normal    Pulling                  pod/hook-image-puller-bh7cf            Pulling image "jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c"
+7m53s       Normal    Pulled                   pod/hook-image-puller-bh7cf            Successfully pulled image "jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c" in 26.45429405s
+7m50s       Normal    Created                  pod/hook-image-puller-bh7cf            Created container image-pull-singleuser
+7m50s       Normal    Started                  pod/hook-image-puller-bh7cf            Started container image-pull-singleuser
+7m49s       Normal    Pulling                  pod/hook-image-puller-bh7cf            Pulling image "k8s.gcr.io/pause:3.6"
+7m49s       Normal    Pulled                   pod/hook-image-puller-bh7cf            Successfully pulled image "k8s.gcr.io/pause:3.6" in 776.8089ms
+7m49s       Normal    Created                  pod/hook-image-puller-bh7cf            Created container pause
+7m49s       Normal    Started                  pod/hook-image-puller-bh7cf            Started container pause
+7m45s       Normal    Killing                  pod/hook-image-puller-bh7cf            Stopping container pause
+7m45s       Warning   FailedKillPod            pod/hook-image-puller-bh7cf            error killing pod: failed to "KillContainer" for "pause" with KillContainerError: "rpc error: code = NotFound desc = an error occurred when try to find container \"44f2ce80482df4554ea77b41049a1a8798ccf9be7b61810c738abe6941f2ea6d\": not found"
+8m24s       Normal    Scheduled                pod/hook-image-puller-w4vck            Successfully assigned jhub/hook-image-puller-w4vck to gke-jhub-cluster-default-pool-ae24674e-3b6w
+8m23s       Normal    Pulling                  pod/hook-image-puller-w4vck            Pulling image "jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47"
+8m20s       Normal    Pulled                   pod/hook-image-puller-w4vck            Successfully pulled image "jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47" in 2.847312544s
+8m20s       Normal    Created                  pod/hook-image-puller-w4vck            Created container image-pull-metadata-block
+8m20s       Normal    Started                  pod/hook-image-puller-w4vck            Started container image-pull-metadata-block
+8m19s       Normal    Pulling                  pod/hook-image-puller-w4vck            Pulling image "jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c"
+7m54s       Normal    Pulled                   pod/hook-image-puller-w4vck            Successfully pulled image "jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c" in 25.175308349s
+7m51s       Normal    Created                  pod/hook-image-puller-w4vck            Created container image-pull-singleuser
+7m51s       Normal    Started                  pod/hook-image-puller-w4vck            Started container image-pull-singleuser
+7m50s       Normal    Pulling                  pod/hook-image-puller-w4vck            Pulling image "k8s.gcr.io/pause:3.6"
+7m50s       Normal    Pulled                   pod/hook-image-puller-w4vck            Successfully pulled image "k8s.gcr.io/pause:3.6" in 725.995932ms
+7m50s       Normal    Created                  pod/hook-image-puller-w4vck            Created container pause
+7m49s       Normal    Started                  pod/hook-image-puller-w4vck            Started container pause
+7m47s       Normal    Killing                  pod/hook-image-puller-w4vck            Stopping container pause
+8m24s       Normal    SuccessfulCreate         daemonset/hook-image-puller            Created pod: hook-image-puller-w4vck
+8m24s       Normal    SuccessfulCreate         daemonset/hook-image-puller            Created pod: hook-image-puller-bh7cf
+7m42s       Warning   FailedScheduling         pod/hub-b67884ccc-sfq4l                0/2 nodes are available: 2 pod has unbound immediate PersistentVolumeClaims.
+7m41s       Normal    NotTriggerScaleUp        pod/hub-b67884ccc-sfq4l                pod didn't trigger scale-up:
+7m40s       Normal    Scheduled                pod/hub-b67884ccc-sfq4l                Successfully assigned jhub/hub-b67884ccc-sfq4l to gke-jhub-cluster-default-pool-ae24674e-3b6w
+7m30s       Normal    SuccessfulAttachVolume   pod/hub-b67884ccc-sfq4l                AttachVolume.Attach succeeded for volume "pvc-9d593218-e410-4708-b683-3e7b07a96e6b"
+7m23s       Normal    Pulling                  pod/hub-b67884ccc-sfq4l                Pulling image "jupyterhub/k8s-hub:1.1.3-n320.hce2bcfb5"
+7m7s        Normal    Pulled                   pod/hub-b67884ccc-sfq4l                Successfully pulled image "jupyterhub/k8s-hub:1.1.3-n320.hce2bcfb5" in 16.036454404s
+7m2s        Normal    Created                  pod/hub-b67884ccc-sfq4l                Created container hub
+7m2s        Normal    Started                  pod/hub-b67884ccc-sfq4l                Started container hub
+7m1s        Warning   Unhealthy                pod/hub-b67884ccc-sfq4l                Readiness probe failed: Get "http://10.68.0.13:8081/hub/health": dial tcp 10.68.0.13:8081: connect: connection refused
+7m43s       Normal    SuccessfulCreate         replicaset/hub-b67884ccc               Created pod: hub-b67884ccc-sfq4l
+7m45s       Normal    ExternalProvisioning     persistentvolumeclaim/hub-db-dir       waiting for a volume to be created, either by external provisioner "pd.csi.storage.gke.io" or manually created by system administrator
+7m45s       Normal    Provisioning             persistentvolumeclaim/hub-db-dir       External provisioner is provisioning volume for claim "jhub/hub-db-dir"
+7m40s       Normal    ProvisioningSucceeded    persistentvolumeclaim/hub-db-dir       Successfully provisioned volume pvc-9d593218-e410-4708-b683-3e7b07a96e6b
+7m44s       Normal    ScalingReplicaSet        deployment/hub                         Scaled up replica set hub-b67884ccc to 1
+7m43s       Normal    Scheduled                pod/proxy-7f8bd5ddbb-wlv46             Successfully assigned jhub/proxy-7f8bd5ddbb-wlv46 to gke-jhub-cluster-default-pool-ae24674e-h4n8
+7m42s       Normal    Pulling                  pod/proxy-7f8bd5ddbb-wlv46             Pulling image "jupyterhub/configurable-http-proxy:4.5.1"
+7m37s       Normal    Pulled                   pod/proxy-7f8bd5ddbb-wlv46             Successfully pulled image "jupyterhub/configurable-http-proxy:4.5.1" in 5.251133805s
+7m36s       Normal    Created                  pod/proxy-7f8bd5ddbb-wlv46             Created container chp
+7m36s       Normal    Started                  pod/proxy-7f8bd5ddbb-wlv46             Started container chp
+7m43s       Normal    SuccessfulCreate         replicaset/proxy-7f8bd5ddbb            Created pod: proxy-7f8bd5ddbb-wlv46
+7m44s       Normal    EnsuringLoadBalancer     service/proxy-public                   Ensuring load balancer
+7m8s        Normal    EnsuredLoadBalancer      service/proxy-public                   Ensured load balancer
+7m44s       Normal    ScalingReplicaSet        deployment/proxy                       Scaled up replica set proxy-7f8bd5ddbb to 1
+7m46s       Normal    NoPods                   poddisruptionbudget/user-placeholder   No matching pods found
+7m43s       Normal    Scheduled                pod/user-scheduler-65cff84584-g8s8d    Successfully assigned jhub/user-scheduler-65cff84584-g8s8d to gke-jhub-cluster-default-pool-ae24674e-3b6w
+7m42s       Normal    Pulling                  pod/user-scheduler-65cff84584-g8s8d    Pulling image "k8s.gcr.io/kube-scheduler:v1.19.16"
+7m41s       Normal    Pulled                   pod/user-scheduler-65cff84584-g8s8d    Successfully pulled image "k8s.gcr.io/kube-scheduler:v1.19.16" in 1.555434847s
+7m40s       Normal    Created                  pod/user-scheduler-65cff84584-g8s8d    Created container kube-scheduler
+7m40s       Normal    Started                  pod/user-scheduler-65cff84584-g8s8d    Started container kube-scheduler
+7m40s       Warning   Unhealthy                pod/user-scheduler-65cff84584-g8s8d    Readiness probe failed: Get "http://10.68.0.12:10251/healthz": dial tcp 10.68.0.12:10251: connect: connection refused
+7m43s       Normal    Scheduled                pod/user-scheduler-65cff84584-qxdmk    Successfully assigned jhub/user-scheduler-65cff84584-qxdmk to gke-jhub-cluster-default-pool-ae24674e-h4n8
+7m42s       Normal    Pulling                  pod/user-scheduler-65cff84584-qxdmk    Pulling image "k8s.gcr.io/kube-scheduler:v1.19.16"
+7m35s       Normal    Pulled                   pod/user-scheduler-65cff84584-qxdmk    Successfully pulled image "k8s.gcr.io/kube-scheduler:v1.19.16" in 6.721188558s
+7m35s       Normal    Created                  pod/user-scheduler-65cff84584-qxdmk    Created container kube-scheduler
+7m35s       Normal    Started                  pod/user-scheduler-65cff84584-qxdmk    Started container kube-scheduler
+7m34s       Warning   Unhealthy                pod/user-scheduler-65cff84584-qxdmk    Readiness probe failed: Get "http://10.68.1.8:10251/healthz": dial tcp 10.68.1.8:10251: connect: connection refused
+7m43s       Normal    SuccessfulCreate         replicaset/user-scheduler-65cff84584   Created pod: user-scheduler-65cff84584-qxdmk
+7m43s       Normal    SuccessfulCreate         replicaset/user-scheduler-65cff84584   Created pod: user-scheduler-65cff84584-g8s8d
+7m39s       Normal    LeaderElection           endpoints/user-scheduler-lock          user-scheduler-65cff84584-g8s8d_23160503-dfa8-4706-a291-125ee9c10571 became leader
+7m46s       Normal    NoPods                   poddisruptionbudget/user-scheduler     No matching pods found
+7m44s       Normal    ScalingReplicaSet        deployment/user-scheduler              Scaled up replica set user-scheduler-65cff84584 to 2

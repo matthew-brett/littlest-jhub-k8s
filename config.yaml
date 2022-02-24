@@ -19,3 +19,7 @@ proxy:
       - hub.odsti.org
     letsencrypt:
       contactEmail: matthew.brett@gmail.com
+      acmeServer: https://acme-staging-v02.api.letsencrypt.org/directory
+
+debug:
+  enabled: true

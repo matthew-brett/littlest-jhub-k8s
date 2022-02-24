@@ -1,0 +1,632 @@
+Name:         autohttps-5588fb5c97-v9px5
+Namespace:    jhub
+Priority:     0
+Node:         gke-jhub-cluster-default-pool-ae24674e-h4n8/10.138.0.27
+Start Time:   Thu, 24 Feb 2022 15:25:49 +0000
+Labels:       app=jupyterhub
+              component=autohttps
+              hub.jupyter.org/network-access-proxy-http=true
+              pod-template-hash=5588fb5c97
+              release=jhub
+Annotations:  checksum/static-config: 6a5f07be7534fec3c2b625e5cf4f33e8a532c7c780f0c2f14e6ecb1a1c065397
+Status:       Running
+IP:           10.68.1.9
+IPs:
+  IP:           10.68.1.9
+Controlled By:  ReplicaSet/autohttps-5588fb5c97
+Init Containers:
+  load-acme:
+    Container ID:  containerd://0b9ed34662b0ee8c90430bb5c0d7b12f62e4ff3a8ee0313c44986170c1391b51
+    Image:         jupyterhub/k8s-secret-sync:1.1.3-n291.h773264a9
+    Image ID:      docker.io/jupyterhub/k8s-secret-sync@sha256:4c5e11f983cd8a42ed68ea9bb06b56cdea84b5469089189681ee1eeced4d19bc
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      load
+      proxy-public-tls-acme
+      acme.json
+      /etc/acme/acme.json
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 24 Feb 2022 15:26:07 +0000
+      Finished:     Thu, 24 Feb 2022 15:26:08 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      PYTHONUNBUFFERED:  True
+    Mounts:
+      /etc/acme from certificates (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8c97p (ro)
+Containers:
+  traefik:
+    Container ID:   containerd://d2114b4b4b789e6bd9207d6a0c3baaf5862fc1faccaec66d3b62faf4ee3a3b50
+    Image:          traefik:v2.6.1
+    Image ID:       docker.io/library/traefik@sha256:e88f389b79b2c287650d11751e3375ece8c5e21bd77100a22e7d0ded2a457d6f
+    Ports:          8080/TCP, 8443/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Thu, 24 Feb 2022 15:26:16 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /etc/acme from certificates (rw)
+      /etc/traefik from traefik-config (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8c97p (ro)
+  secret-sync:
+    Container ID:  containerd://4bd3ed83cc1be2b83ae0c659b37ac893aa1c665e9ed0c82b5a19687f6710c6a1
+    Image:         jupyterhub/k8s-secret-sync:1.1.3-n291.h773264a9
+    Image ID:      docker.io/jupyterhub/k8s-secret-sync@sha256:4c5e11f983cd8a42ed68ea9bb06b56cdea84b5469089189681ee1eeced4d19bc
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      watch-save
+      --label=app=jupyterhub
+      --label=release=jhub
+      --label=chart=jupyterhub-1.1.3-n324.hb93a9b5f
+      --label=heritage=secret-sync
+      proxy-public-tls-acme
+      acme.json
+      /etc/acme/acme.json
+    State:          Running
+      Started:      Thu, 24 Feb 2022 15:26:16 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      PYTHONUNBUFFERED:  True
+    Mounts:
+      /etc/acme from certificates (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8c97p (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  certificates:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  traefik-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      autohttps
+    Optional:  false
+  kube-api-access-8c97p:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 hub.jupyter.org/dedicated=core:NoSchedule
+                             hub.jupyter.org_dedicated=core:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  6m53s  default-scheduler  Successfully assigned jhub/autohttps-5588fb5c97-v9px5 to gke-jhub-cluster-default-pool-ae24674e-h4n8
+  Normal  Pulling    6m52s  kubelet            Pulling image "jupyterhub/k8s-secret-sync:1.1.3-n291.h773264a9"
+  Normal  Pulled     6m36s  kubelet            Successfully pulled image "jupyterhub/k8s-secret-sync:1.1.3-n291.h773264a9" in 15.765004442s
+  Normal  Created    6m35s  kubelet            Created container load-acme
+  Normal  Started    6m35s  kubelet            Started container load-acme
+  Normal  Pulling    6m33s  kubelet            Pulling image "traefik:v2.6.1"
+  Normal  Pulled     6m27s  kubelet            Successfully pulled image "traefik:v2.6.1" in 6.13352423s
+  Normal  Created    6m26s  kubelet            Created container traefik
+  Normal  Started    6m26s  kubelet            Started container traefik
+  Normal  Pulled     6m26s  kubelet            Container image "jupyterhub/k8s-secret-sync:1.1.3-n291.h773264a9" already present on machine
+  Normal  Created    6m26s  kubelet            Created container secret-sync
+  Normal  Started    6m26s  kubelet            Started container secret-sync
+
+
+Name:         continuous-image-puller-f29h6
+Namespace:    jhub
+Priority:     0
+Node:         gke-jhub-cluster-default-pool-ae24674e-h4n8/10.138.0.27
+Start Time:   Thu, 24 Feb 2022 15:25:48 +0000
+Labels:       app=jupyterhub
+              component=continuous-image-puller
+              controller-revision-hash=6447cf7bfb
+              pod-template-generation=1
+              release=jhub
+Annotations:  <none>
+Status:       Running
+IP:           10.68.1.6
+IPs:
+  IP:           10.68.1.6
+Controlled By:  DaemonSet/continuous-image-puller
+Init Containers:
+  image-pull-metadata-block:
+    Container ID:  containerd://78b15e85b9fd826fb8a8d3cade53649bfa8ae0d001d524d28405246dade01fee
+    Image:         jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47
+    Image ID:      docker.io/jupyterhub/k8s-network-tools@sha256:85f0e20cc9231808ce425916d0a1f5428e09d14a579c81b549e82538e87c1e4c
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+      echo "Pulling complete"
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 24 Feb 2022 15:25:49 +0000
+      Finished:     Thu, 24 Feb 2022 15:25:49 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:         <none>
+  image-pull-singleuser:
+    Container ID:  containerd://3be11d215238ac772e895a16fba1a6ef1c8463c7bd3f0c163ce65465d7c1aa74
+    Image:         jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c
+    Image ID:      docker.io/jupyterhub/k8s-singleuser-sample@sha256:0e782278f4d1cb52903885817d27bf008af34a891adf69594de80e23761670f9
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+      echo "Pulling complete"
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 24 Feb 2022 15:25:50 +0000
+      Finished:     Thu, 24 Feb 2022 15:25:50 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:         <none>
+Containers:
+  pause:
+    Container ID:   containerd://fa208eaee99ebd301d22676bcc8f8eab414776162d1a62d0505328d0b3699ea1
+    Image:          k8s.gcr.io/pause:3.6
+    Image ID:       k8s.gcr.io/pause@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Thu, 24 Feb 2022 15:25:51 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:         <none>
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:            <none>
+QoS Class:          BestEffort
+Node-Selectors:     <none>
+Tolerations:        hub.jupyter.org/dedicated=user:NoSchedule
+                    hub.jupyter.org_dedicated=user:NoSchedule
+                    node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/not-ready:NoExecute op=Exists
+                    node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/unreachable:NoExecute op=Exists
+                    node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  6m54s  default-scheduler  Successfully assigned jhub/continuous-image-puller-f29h6 to gke-jhub-cluster-default-pool-ae24674e-h4n8
+  Normal  Pulled     6m53s  kubelet            Container image "jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47" already present on machine
+  Normal  Created    6m53s  kubelet            Created container image-pull-metadata-block
+  Normal  Started    6m53s  kubelet            Started container image-pull-metadata-block
+  Normal  Pulled     6m52s  kubelet            Container image "jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c" already present on machine
+  Normal  Created    6m52s  kubelet            Created container image-pull-singleuser
+  Normal  Started    6m52s  kubelet            Started container image-pull-singleuser
+  Normal  Pulled     6m51s  kubelet            Container image "k8s.gcr.io/pause:3.6" already present on machine
+  Normal  Created    6m51s  kubelet            Created container pause
+  Normal  Started    6m51s  kubelet            Started container pause
+
+
+Name:         continuous-image-puller-fcflc
+Namespace:    jhub
+Priority:     0
+Node:         gke-jhub-cluster-default-pool-ae24674e-3b6w/10.138.0.26
+Start Time:   Thu, 24 Feb 2022 15:25:48 +0000
+Labels:       app=jupyterhub
+              component=continuous-image-puller
+              controller-revision-hash=6447cf7bfb
+              pod-template-generation=1
+              release=jhub
+Annotations:  <none>
+Status:       Running
+IP:           10.68.0.11
+IPs:
+  IP:           10.68.0.11
+Controlled By:  DaemonSet/continuous-image-puller
+Init Containers:
+  image-pull-metadata-block:
+    Container ID:  containerd://2748f0c03651032e9c95894efe090aefcdc6ba33394ae5e0c1207ea37e246e18
+    Image:         jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47
+    Image ID:      docker.io/jupyterhub/k8s-network-tools@sha256:85f0e20cc9231808ce425916d0a1f5428e09d14a579c81b549e82538e87c1e4c
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+      echo "Pulling complete"
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 24 Feb 2022 15:25:49 +0000
+      Finished:     Thu, 24 Feb 2022 15:25:49 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:         <none>
+  image-pull-singleuser:
+    Container ID:  containerd://42acd890f25930e0f142ee691d766023f09a74964cbb9db740f614546db8bec6
+    Image:         jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c
+    Image ID:      docker.io/jupyterhub/k8s-singleuser-sample@sha256:0e782278f4d1cb52903885817d27bf008af34a891adf69594de80e23761670f9
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+      echo "Pulling complete"
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 24 Feb 2022 15:25:50 +0000
+      Finished:     Thu, 24 Feb 2022 15:25:50 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:         <none>
+Containers:
+  pause:
+    Container ID:   containerd://05e2d28b5d5209776bcbcc7639ef9cf58b07cf0cde1cf0936dde42d9c6e186a6
+    Image:          k8s.gcr.io/pause:3.6
+    Image ID:       k8s.gcr.io/pause@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Thu, 24 Feb 2022 15:25:51 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:         <none>
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:            <none>
+QoS Class:          BestEffort
+Node-Selectors:     <none>
+Tolerations:        hub.jupyter.org/dedicated=user:NoSchedule
+                    hub.jupyter.org_dedicated=user:NoSchedule
+                    node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/not-ready:NoExecute op=Exists
+                    node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/unreachable:NoExecute op=Exists
+                    node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  6m55s  default-scheduler  Successfully assigned jhub/continuous-image-puller-fcflc to gke-jhub-cluster-default-pool-ae24674e-3b6w
+  Normal  Pulled     6m54s  kubelet            Container image "jupyterhub/k8s-network-tools:1.1.3-n176.h739f4b47" already present on machine
+  Normal  Created    6m54s  kubelet            Created container image-pull-metadata-block
+  Normal  Started    6m54s  kubelet            Started container image-pull-metadata-block
+  Normal  Pulled     6m53s  kubelet            Container image "jupyterhub/k8s-singleuser-sample:1.1.3-n320.hb262750c" already present on machine
+  Normal  Created    6m53s  kubelet            Created container image-pull-singleuser
+  Normal  Started    6m53s  kubelet            Started container image-pull-singleuser
+  Normal  Pulled     6m52s  kubelet            Container image "k8s.gcr.io/pause:3.6" already present on machine
+  Normal  Created    6m52s  kubelet            Created container pause
+  Normal  Started    6m52s  kubelet            Started container pause
+
+
+Name:         hub-b67884ccc-sfq4l
+Namespace:    jhub
+Priority:     0
+Node:         gke-jhub-cluster-default-pool-ae24674e-3b6w/10.138.0.26
+Start Time:   Thu, 24 Feb 2022 15:25:52 +0000
+Labels:       app=jupyterhub
+              component=hub
+              hub.jupyter.org/network-access-proxy-api=true
+              hub.jupyter.org/network-access-proxy-http=true
+              hub.jupyter.org/network-access-singleuser=true
+              pod-template-hash=b67884ccc
+              release=jhub
+Annotations:  checksum/config-map: 1f89036adde336ecbd133f95962189d5a998598ed2e4c8523440c008c943e73c
+              checksum/secret: 69f837a8bf1c44e1b41f65242761981fba92390e66196d34f3875aba8bafd786
+Status:       Running
+IP:           10.68.0.13
+IPs:
+  IP:           10.68.0.13
+Controlled By:  ReplicaSet/hub-b67884ccc
+Containers:
+  hub:
+    Container ID:  containerd://cd1861f4bf397ef195e7edac8742147591397e3e30b34cb75e26d8c14233445b
+    Image:         jupyterhub/k8s-hub:1.1.3-n320.hce2bcfb5
+    Image ID:      docker.io/jupyterhub/k8s-hub@sha256:e41495a397113325d14a5628ca19dece96767554ce1bf958424a843627ea9f02
+    Port:          8081/TCP
+    Host Port:     0/TCP
+    Args:
+      jupyterhub
+      --config
+      /usr/local/etc/jupyterhub/jupyterhub_config.py
+      --debug
+      --upgrade-db
+    State:          Running
+      Started:      Thu, 24 Feb 2022 15:26:30 +0000
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:http/hub/health delay=300s timeout=3s period=10s #success=1 #failure=30
+    Readiness:      http-get http://:http/hub/health delay=0s timeout=1s period=2s #success=1 #failure=1000
+    Environment:
+      PYTHONUNBUFFERED:        1
+      HELM_RELEASE_NAME:       jhub
+      POD_NAMESPACE:           jhub (v1:metadata.namespace)
+      CONFIGPROXY_AUTH_TOKEN:  <set to the key 'hub.config.ConfigurableHTTPProxy.auth_token' in secret 'hub'>  Optional: false
+    Mounts:
+      /srv/jupyterhub from pvc (rw)
+      /usr/local/etc/jupyterhub/config/ from config (rw)
+      /usr/local/etc/jupyterhub/jupyterhub_config.py from config (rw,path="jupyterhub_config.py")
+      /usr/local/etc/jupyterhub/secret/ from secret (rw)
+      /usr/local/etc/jupyterhub/z2jh.py from config (rw,path="z2jh.py")
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-4dbsj (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      hub
+    Optional:  false
+  secret:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  hub
+    Optional:    false
+  pvc:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  hub-db-dir
+    ReadOnly:   false
+  kube-api-access-4dbsj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 hub.jupyter.org/dedicated=core:NoSchedule
+                             hub.jupyter.org_dedicated=core:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason                  Age                    From                     Message
+  ----     ------                  ----                   ----                     -------
+  Warning  FailedScheduling        6m53s (x2 over 6m54s)  default-scheduler        0/2 nodes are available: 2 pod has unbound immediate PersistentVolumeClaims.
+  Normal   NotTriggerScaleUp       6m52s                  cluster-autoscaler       pod didn't trigger scale-up:
+  Normal   Scheduled               6m51s                  default-scheduler        Successfully assigned jhub/hub-b67884ccc-sfq4l to gke-jhub-cluster-default-pool-ae24674e-3b6w
+  Normal   SuccessfulAttachVolume  6m41s                  attachdetach-controller  AttachVolume.Attach succeeded for volume "pvc-9d593218-e410-4708-b683-3e7b07a96e6b"
+  Normal   Pulling                 6m34s                  kubelet                  Pulling image "jupyterhub/k8s-hub:1.1.3-n320.hce2bcfb5"
+  Normal   Pulled                  6m18s                  kubelet                  Successfully pulled image "jupyterhub/k8s-hub:1.1.3-n320.hce2bcfb5" in 16.036454404s
+  Normal   Created                 6m13s                  kubelet                  Created container hub
+  Normal   Started                 6m13s                  kubelet                  Started container hub
+  Warning  Unhealthy               6m12s                  kubelet                  Readiness probe failed: Get "http://10.68.0.13:8081/hub/health": dial tcp 10.68.0.13:8081: connect: connection refused
+
+
+Name:         proxy-7f8bd5ddbb-wlv46
+Namespace:    jhub
+Priority:     0
+Node:         gke-jhub-cluster-default-pool-ae24674e-h4n8/10.138.0.27
+Start Time:   Thu, 24 Feb 2022 15:25:49 +0000
+Labels:       app=jupyterhub
+              component=proxy
+              hub.jupyter.org/network-access-hub=true
+              hub.jupyter.org/network-access-singleuser=true
+              pod-template-hash=7f8bd5ddbb
+              release=jhub
+Annotations:  checksum/auth-token: ab80
+              checksum/proxy-secret: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+Status:       Running
+IP:           10.68.1.7
+IPs:
+  IP:           10.68.1.7
+Controlled By:  ReplicaSet/proxy-7f8bd5ddbb
+Containers:
+  chp:
+    Container ID:  containerd://edcb8d628b797d1a29f6fcd183383333772263d14e037b9c99f97898f194ae4d
+    Image:         jupyterhub/configurable-http-proxy:4.5.1
+    Image ID:      docker.io/jupyterhub/configurable-http-proxy@sha256:723028bf9b3cb72b2c8457ce0513023b465109f09f3ab746863879eebb84b7dc
+    Ports:         8000/TCP, 8001/TCP
+    Host Ports:    0/TCP, 0/TCP
+    Command:
+      configurable-http-proxy
+      --ip=
+      --api-ip=
+      --api-port=8001
+      --default-target=http://hub:$(HUB_SERVICE_PORT)
+      --error-target=http://hub:$(HUB_SERVICE_PORT)/hub/error
+      --port=8000
+      --log-level=debug
+    State:          Running
+      Started:      Thu, 24 Feb 2022 15:25:56 +0000
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:http/_chp_healthz delay=60s timeout=3s period=10s #success=1 #failure=30
+    Readiness:      http-get http://:http/_chp_healthz delay=0s timeout=1s period=2s #success=1 #failure=1000
+    Environment:
+      CONFIGPROXY_AUTH_TOKEN:  <set to the key 'hub.config.ConfigurableHTTPProxy.auth_token' in secret 'hub'>  Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-v95zn (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-v95zn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 hub.jupyter.org/dedicated=core:NoSchedule
+                             hub.jupyter.org_dedicated=core:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  6m54s  default-scheduler  Successfully assigned jhub/proxy-7f8bd5ddbb-wlv46 to gke-jhub-cluster-default-pool-ae24674e-h4n8
+  Normal  Pulling    6m53s  kubelet            Pulling image "jupyterhub/configurable-http-proxy:4.5.1"
+  Normal  Pulled     6m48s  kubelet            Successfully pulled image "jupyterhub/configurable-http-proxy:4.5.1" in 5.251133805s
+  Normal  Created    6m47s  kubelet            Created container chp
+  Normal  Started    6m47s  kubelet            Started container chp
+
+
+Name:         user-scheduler-65cff84584-g8s8d
+Namespace:    jhub
+Priority:     0
+Node:         gke-jhub-cluster-default-pool-ae24674e-3b6w/10.138.0.26
+Start Time:   Thu, 24 Feb 2022 15:25:49 +0000
+Labels:       app=jupyterhub
+              component=user-scheduler
+              pod-template-hash=65cff84584
+              release=jhub
+Annotations:  checksum/config-map: e11a4d006f0053c98a6a8a84a68745c3a7b29677ec753558544fd1fc7fc3ac5c
+Status:       Running
+IP:           10.68.0.12
+IPs:
+  IP:           10.68.0.12
+Controlled By:  ReplicaSet/user-scheduler-65cff84584
+Containers:
+  kube-scheduler:
+    Container ID:  containerd://8993ea660ab0c4ebc47de957305a540fe05373631ffe0d891f0ad541f8764d37
+    Image:         k8s.gcr.io/kube-scheduler:v1.19.16
+    Image ID:      k8s.gcr.io/kube-scheduler@sha256:1a335251eaef4e209d5757da0bf5499ecdce6e65413f7cb92ff4cc633d6fc7dd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /usr/local/bin/kube-scheduler
+      --config=/etc/user-scheduler/config.yaml
+      --authentication-skip-lookup=true
+      --v=4
+    State:          Running
+      Started:      Thu, 24 Feb 2022 15:25:52 +0000
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:10251/healthz delay=15s timeout=1s period=10s #success=1 #failure=3
+    Readiness:      http-get http://:10251/healthz delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:    <none>
+    Mounts:
+      /etc/user-scheduler from config (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-kmh4d (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      user-scheduler
+    Optional:  false
+  kube-api-access-kmh4d:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 hub.jupyter.org/dedicated=core:NoSchedule
+                             hub.jupyter.org_dedicated=core:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age    From               Message
+  ----     ------     ----   ----               -------
+  Normal   Scheduled  6m55s  default-scheduler  Successfully assigned jhub/user-scheduler-65cff84584-g8s8d to gke-jhub-cluster-default-pool-ae24674e-3b6w
+  Normal   Pulling    6m54s  kubelet            Pulling image "k8s.gcr.io/kube-scheduler:v1.19.16"
+  Normal   Pulled     6m53s  kubelet            Successfully pulled image "k8s.gcr.io/kube-scheduler:v1.19.16" in 1.555434847s
+  Normal   Created    6m52s  kubelet            Created container kube-scheduler
+  Normal   Started    6m52s  kubelet            Started container kube-scheduler
+  Warning  Unhealthy  6m52s  kubelet            Readiness probe failed: Get "http://10.68.0.12:10251/healthz": dial tcp 10.68.0.12:10251: connect: connection refused
+
+
+Name:         user-scheduler-65cff84584-qxdmk
+Namespace:    jhub
+Priority:     0
+Node:         gke-jhub-cluster-default-pool-ae24674e-h4n8/10.138.0.27
+Start Time:   Thu, 24 Feb 2022 15:25:49 +0000
+Labels:       app=jupyterhub
+              component=user-scheduler
+              pod-template-hash=65cff84584
+              release=jhub
+Annotations:  checksum/config-map: e11a4d006f0053c98a6a8a84a68745c3a7b29677ec753558544fd1fc7fc3ac5c
+Status:       Running
+IP:           10.68.1.8
+IPs:
+  IP:           10.68.1.8
+Controlled By:  ReplicaSet/user-scheduler-65cff84584
+Containers:
+  kube-scheduler:
+    Container ID:  containerd://53944cc9ce65ab8d5708c1b635516f50a86856f8e9c9f11482638817011e289d
+    Image:         k8s.gcr.io/kube-scheduler:v1.19.16
+    Image ID:      k8s.gcr.io/kube-scheduler@sha256:1a335251eaef4e209d5757da0bf5499ecdce6e65413f7cb92ff4cc633d6fc7dd
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /usr/local/bin/kube-scheduler
+      --config=/etc/user-scheduler/config.yaml
+      --authentication-skip-lookup=true
+      --v=4
+    State:          Running
+      Started:      Thu, 24 Feb 2022 15:25:57 +0000
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:10251/healthz delay=15s timeout=1s period=10s #success=1 #failure=3
+    Readiness:      http-get http://:10251/healthz delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:    <none>
+    Mounts:
+      /etc/user-scheduler from config (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-swt8g (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      user-scheduler
+    Optional:  false
+  kube-api-access-swt8g:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 hub.jupyter.org/dedicated=core:NoSchedule
+                             hub.jupyter.org_dedicated=core:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age    From               Message
+  ----     ------     ----   ----               -------
+  Normal   Scheduled  6m55s  default-scheduler  Successfully assigned jhub/user-scheduler-65cff84584-qxdmk to gke-jhub-cluster-default-pool-ae24674e-h4n8
+  Normal   Pulling    6m54s  kubelet            Pulling image "k8s.gcr.io/kube-scheduler:v1.19.16"
+  Normal   Pulled     6m47s  kubelet            Successfully pulled image "k8s.gcr.io/kube-scheduler:v1.19.16" in 6.721188558s
+  Normal   Created    6m47s  kubelet            Created container kube-scheduler
+  Normal   Started    6m47s  kubelet            Started container kube-scheduler
+  Warning  Unhealthy  6m46s  kubelet            Readiness probe failed: Get "http://10.68.1.8:10251/healthz": dial tcp 10.68.1.8:10251: connect: connection refused
